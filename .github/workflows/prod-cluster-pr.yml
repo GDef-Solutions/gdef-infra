@@ -1,0 +1,20 @@
+name: Prod Cluster PR
+on: [push]
+jobs:
+  Prod-Cluster-Test:
+    runs-on: ubuntu-latest
+    env:
+      TF_VAR_do_token: ${{ secrets.TF_VAR_do_token }}
+    defaults:
+      run:
+        working-directory: envs/prod-cluster
+    steps:
+      - name: Check out repository code
+        uses: actions/checkout@v3
+      - name: Setup Terraform
+        uses: hashicorp/setup-terraform@v1
+        with:
+          cli_config_credentials_token: ${{ secrets.TF_API_TOKEN }}
+      - run: terraform init
+      - run: terraform validate
+      - run: terraform plan
