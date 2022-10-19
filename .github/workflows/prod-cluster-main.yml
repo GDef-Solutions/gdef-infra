@@ -3,6 +3,9 @@ on:
   push:
     branches:
       - 'main'
+    paths:
+      - 'modules/digital_ocean_k8s_cluster/**'
+      - 'envs/prod_cluster/**'
 jobs:
   Prod-Cluster-Apply:
     uses: GDef-Solutions/gdef-infra/.github/workflows/terraform-main.yml@main

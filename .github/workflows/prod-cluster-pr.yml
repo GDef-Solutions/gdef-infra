@@ -1,5 +1,9 @@
 name: Prod Cluster PR
-on: [pull_request]
+on:
+  pull_request:
+    paths:
+      - 'modules/digital_ocean_k8s_cluster/**'
+      - 'envs/prod_cluster/**'
 jobs:
   Prod-Cluster-Test:
     uses: GDef-Solutions/gdef-infra/.github/workflows/terraform-pr.yml@main
