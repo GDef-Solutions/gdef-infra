@@ -2,19 +2,9 @@ name: Prod Cluster PR
 on: [push]
 jobs:
   Prod-Cluster-Test:
-    runs-on: ubuntu-latest
-    env:
+    uses: GDef-Solutions/gdef-infra/.github/workflows/terraform-pr.yml@cluster-github-actions
+    with:
+      working_directory: envs/prod-cluster
+    secrets:
       TF_VAR_do_token: ${{ secrets.TF_VAR_do_token }}
-    defaults:
-      run:
-        working-directory: envs/prod-cluster
-    steps:
-      - name: Check out repository code
-        uses: actions/checkout@v3
-      - name: Setup Terraform
-        uses: hashicorp/setup-terraform@v2
-        with:
-          cli_config_credentials_token: ${{ secrets.TF_API_TOKEN }}
-      - run: terraform init
-      - run: terraform validate
-      - run: terraform plan
+      TF_API_TOKEN: ${{ secrets.TF_API_TOKEN }}
