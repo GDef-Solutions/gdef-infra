@@ -1,0 +1,28 @@
+on:
+  workflow_call:
+    inputs:
+      working_directory:
+        required: true
+        type: string
+    secrets:
+      TF_VAR_do_token:
+        required: true
+      TF_API_TOKEN:
+        required: true
+jobs:
+  Terraform-Apply:
+    runs-on: ubuntu-latest
+    env:
+      TF_VAR_do_token: ${{ secrets.TF_VAR_do_token }}
+    defaults:
+      run:
+        working-directory: ${{ inputs.working_directory }}
+    steps:
+      - name: Check out repository code
+        uses: actions/checkout@v3
+      - name: Setup Terraform
+        uses: hashicorp/setup-terraform@v2
+        with:
+          cli_config_credentials_token: ${{ secrets.TF_API_TOKEN }}
+      - run: terraform init
+      - run: terraform apply -auto-approve

@@ -1,0 +1,13 @@
+name: Prod Cluster Main
+on:
+  push:
+    branches:
+      - 'main'
+jobs:
+  Prod-Cluster-Apply:
+    uses: GDef-Solutions/gdef-infra/.github/workflows/terraform-main.yml@main
+    with:
+      working_directory: envs/prod-cluster
+    secrets:
+      TF_VAR_do_token: ${{ secrets.TF_VAR_do_token }}
+      TF_API_TOKEN: ${{ secrets.TF_API_TOKEN }}
