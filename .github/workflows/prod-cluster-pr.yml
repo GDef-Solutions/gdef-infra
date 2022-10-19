@@ -2,7 +2,7 @@ name: Prod Cluster PR
 on: [pull_request]
 jobs:
   Prod-Cluster-Test:
-    uses: GDef-Solutions/gdef-infra/.github/workflows/terraform-pr.yml@cluster-github-actions
+    uses: GDef-Solutions/gdef-infra/.github/workflows/terraform-pr.yml@main
     with:
       working_directory: envs/prod-cluster
     secrets:
