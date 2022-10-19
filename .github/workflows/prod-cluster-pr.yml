@@ -4,7 +4,7 @@ jobs:
   Prod-Cluster-Test:
     uses: GDef-Solutions/gdef-infra/.github/workflows/terraform-pr.yml@main
     with:
-      working_directory: envs/prod-cluster
+      working_directory: envs/prod_cluster
     secrets:
       TF_VAR_do_token: ${{ secrets.TF_VAR_do_token }}
       TF_API_TOKEN: ${{ secrets.TF_API_TOKEN }}
