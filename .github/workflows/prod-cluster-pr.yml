@@ -1,0 +1,10 @@
+name: Prod Cluster PR
+on: [pull_request]
+jobs:
+  Prod-Cluster-Test:
+    uses: GDef-Solutions/gdef-infra/.github/workflows/terraform-pr.yml@cluster-github-actions
+    with:
+      working_directory: envs/prod-cluster
+    secrets:
+      TF_VAR_do_token: ${{ secrets.TF_VAR_do_token }}
+      TF_API_TOKEN: ${{ secrets.TF_API_TOKEN }}
